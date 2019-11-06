@@ -11,9 +11,11 @@ class window():
 
 
 def loadMap(path):
-    text_file = open(path,"r")
-    data = (text_file.read()).split('\n')
-    text_file.close
+    try:
+        with open(path,"r") as my_file:
+            data = my_file.read().split('\n')
+    except FileNotFoundError:
+        print("GameMap.txt not found")
     organized_map = []
     for line in data:
         organized_map.append(list(line))
