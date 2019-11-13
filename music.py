@@ -1,3 +1,5 @@
+#music made by (youtuber)
+
 from os.path import join
 import pygame as pg
 pg.init()

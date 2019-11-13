@@ -1,29 +1,5 @@
 
-
-def occurrences(string):
-    charCount = {}
-    alreadycounted = []
-    newstring = ""
-    for char in string:
-        if char.isupper:
-            newstring += char.lower()
-        else:
-            newstring += char  
-    for lowerchar in newstring:
-        if lowerchar not in alreadycounted:
-            charCount[lowerchar] = newstring.count(lowerchar)
-            alreadycounted.append(lowerchar)
-    return charCount, newstring
-
-def main():
-    string = "Jeff Bezo "
-    charCount, newstring = occurrences(string.strip())
-    for i in charCount:
-        print(charCount[i])
-    mostInstances = max(charCount, key = charCount.get)
-    a = newstring.replace(mostInstances,"&",-1)
-    print(chr(ord("sadasdas")))
-
+import pygame as pg
 class Projectile(pg.sprite.Sprite):
     def __init__(self,user_moving_left,x,y,flip): 
         pg.sprite.Sprite.__init__(self)
@@ -39,3 +15,6 @@ class Projectile(pg.sprite.Sprite):
             self.rect.x -= 10
         else:
             self.rect.x += 10
+            
+#writing to: printing to file; output file: file being writtenuu
+# when you open with w it deletes everything # append creates file is DOE and adds n. print add lines in files because it appends it and considers \n ? 
