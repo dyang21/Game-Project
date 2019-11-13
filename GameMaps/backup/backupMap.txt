@@ -1,0 +1,89 @@
+#0 is air,1 is dirt, and 2 is grass
+game_map = [['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
+            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
+            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
+            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
+            ['0','0','0','0','0','0','0','2','2','2','2','2','0','0','0','0','0','0','0'],
+            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
+            ['2','2','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','2','2'],
+            ['1','1','2','2','2','2','2','2','2','2','2','2','2','2','2','2','2','1','1'],
+            ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'],
+            ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'],
+            ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'],
+            ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'],
+            ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1']]
+
+#moving_right = False
+#moving_left = False
+#vertical_momentum = 0
+air_timer = 0 #necessary because movement speed rounds down.
+#x and y. based on how far camera moves.
+float_resize = [0,0]
+flip2 = False
+enableDoubleJump = False
+player_action = "idle"
+player_frame = 0
+player_flip = False
+# x,y, width and height. important
+player_rect = pygame.Rect(100,100,23,54) 
+
+#WINDOW_SIZE = (600,400)
+#screen = pygame.display.set_mode(WINDOW_SIZE,0,32) # initiate the window
+#300 200. ratio 3 by 2 is most common
+#display = pygame.Surface((360,240)) # used as the surface for rendering, which is then scaled to window size at end
+
+from os.path import join
+import pygame as pg
+
+pg.init()
+
+def loadMaps(path):
+    map_database = []
+    try:
+        with open(path,"r") as my_file:
+            data = my_file.read().split('\n')
+    except FileNotFoundError:
+        print("Map Text File not found")
+    
+    for line in data:
+        map_database.append(list(line))
+    return map_database
+
+class window():
+    def __init__(self):
+        self.WINDOW_SIZE = (600,400) # 300 200. ratio 3 by 2 is most common
+        self.screen = pg.display.set_mode(self.WINDOW_SIZE) # initiate the window
+        self.display = pg.Surface((360,240)) # surface for rendering; scaled to window size at end
+        self.clock = pg.time.Clock() 
+        self.bg_objects = [[0.20,[150,100,25,100]],[0.25,[100,50,100,25]],[0.4,[50,150,50,75]],[0.5,[10,75,70,100]]] 
+        #lag small > high,(rect param)
+        self.float_difference = [0,0] # x and y. based on how far camera moves.
+        self.captions = pg.display.set_caption('Lost Goblin')
+        self.terriblemap = loadMaps("GameMap.txt")
+        self.right_border = (len(self.terriblemap[1])-1) * 16 #assuming that gamemap is 4sided
+    def drawCoolBackground(self,resize):
+        """
+        #(surface,rgb,rect(x,y,width,height))
+    #pg.draw.rect(win.display,(100, 192, 207),pg.Rect(0,25,300,65)) #background
+    #Rect(x,y,width,height). mutiple rs difference for lag effect. greatest to least. change location. not size
+        """
+        pg.draw.rect(self.display,(250, 255, 50),pg.Rect(10,250,120,270))
+        for eachObject in self.bg_objects:
+            obj_rect = pg.Rect(eachObject[1][0]-resize[0]*eachObject[0],eachObject[1][1]-resize[1]*eachObject[0],eachObject[1][2],eachObject[1][3])
+            if eachObject[0] == 0.5:
+                pg.draw.rect(self.display,(170,255,123),obj_rect)
+            else:
+                pg.draw.rect(self.display,(0,247,255),obj_rect)
+
+
+            try:
+                with open(file,"r") as my_file:
+                    data = my_file.read().split('\n')
+                    for line in data:
+                        map_data.append(list(line))
+                        print(line)            
+            except OSError:
+                print("Unexpected error:" + file)
+
+
+    
