@@ -4,6 +4,7 @@
 from os.path import join 
 
 import pygame as pg
+import gamescreen
 
 #pygame.init()
 
@@ -17,9 +18,9 @@ def loadAnimation(folder_path,image_duration): #assumes the images in the folder
     frame_database = []
     n = 0
     for img in image_duration: 
-        image_id = image_name + "_" + str(n)
+        image_id = image_name + str(n)
         image_location = folder_path + "\\"  + image_id + ".png" 
-        animation_image = pg.image.load(image_location)
+        animation_image = pg.transform.scale(pg.image.load(image_location),(50,65)).convert()
         animation_image.set_colorkey((0,0,0))  #img background transparency
         #try using other scalers to transform img bigger. pygame smoothscale is terrible
         animation_frames[image_id] = animation_image.copy()
@@ -32,6 +33,7 @@ def loadAnimation(folder_path,image_duration): #assumes the images in the folder
 #Gives sequence of images for every action.
 animation_database = {}
 #get frames to secs
-animation_database['static'] = loadAnimation(join('characters_pics','static'),[160,160])    #160/60 or fps specified below to secs
-animation_database["in_motion"] = loadAnimation(join('characters_pics','in_motion','walking'),[15,15,15,15,15])
+animation_database['static'] = loadAnimation(join('characters_pics','static','character_robot_static'),[125]*7)    #160/60 or fps specified below to secs
+animation_database["walk"] = loadAnimation(join('characters_pics','in_motion','character_robot_walk'),[9]*7)
+animation_database["jump"] = loadAnimation(join('characters_pics','in_motion','character_robot_jump'),[30])
 
