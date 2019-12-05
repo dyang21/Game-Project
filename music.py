@@ -14,4 +14,4 @@ jumpSound = pg.mixer.Sound(join("Music","in_motion","sfx_shieldUp.ogg")) #some f
 fallSound = pg.mixer.Sound(join("Music","sfx_lose.ogg"))
 stageComplete = pg.mixer.Sound(join("Music","sfx_complete.ogg"))
 
-pg.mixer.music.play(-1)
+#pg.mixer.music.play(-1)
