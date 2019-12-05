@@ -362,8 +362,6 @@ def gameLoop():
             win.stage_num += 1
             win.state = win.state[:-1] + str(win.stage_num)
 
-
-
             user.spawned = False
 
         if user.spawned == False:
@@ -383,7 +381,6 @@ def gameLoop():
         collisions = col.col(user.player_rect, user.player_movement, tile_rects) #rect and dict. moves the player rect
         #put make that true for collisions up also
         if collisions["top"] == True:
-            user.vertical_momenuetum = 0
             user.vertical_momentum = -user.vertical_momentum
         if collisions['bottom'] == True:
             user.air_timer = 0
@@ -392,11 +389,6 @@ def gameLoop():
         else:
             user.air_timer += 1
 
-        #print(user.player_rect.y)
-        if win.state == "GameMap8":
-            pass
-            #self.victoryLoop()
-            
         mousePos = pg.mouse.get_pos()
         scaleMousePos = [i * 0.63  for i in (mousePos)]
 
@@ -408,19 +400,13 @@ def gameLoop():
                 
             if event.type == pg.MOUSEBUTTONDOWN and win.pause == True:
                 if ui.retryButton.overButton(scaleMousePos):
-                    win.state = "GameMap0"
                     user.pause,user.spawned,win.pause,win.time = 0,0,0,0
-                    user.health = 5
-                    pg.mixer.music.play(-1)
+                    gameLoop()
                     
                 elif ui.pauseMenuQuit.overButton(scaleMousePos):
                     pg.quit()
                     sys.exit()
                     
-
-                    
-
-                
                 
             if event.type == pg.KEYDOWN:
                 if user.pause == False:
@@ -444,7 +430,7 @@ def gameLoop():
                 if event.key == pg.K_2:
                     pg.mixer.music.fadeout(1*1000) #milliseconds
 
-                if event.key == pg.K_3:
+                if event.key == pg.K_ESCAPE:
                     if win.pause == True:
                         win.pause, user.pause = False, False
                         pg.mixer.music.play(-1)
@@ -453,14 +439,6 @@ def gameLoop():
                         #user.vertical_momentum = 0
                         win.pause = True
                 
-                
-                
-
-                    
-
-
-                
-
 
             if event.type == pg.KEYUP:
                 if event.key == pg.K_RIGHT:
