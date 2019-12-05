@@ -1,4 +1,6 @@
 # Game-Project
-In progress. Utilizes Pygame and Python.
+Completed. Utilizes Pygame and Python.
 
-Exempted player and block imgs because they werent royalty-free
+A project I worked on by myself to experience working on an independent large scale project.
+
+readme in progress
