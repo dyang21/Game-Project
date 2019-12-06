@@ -63,7 +63,6 @@ def loadScores(time = 0 , update = False):
         data1.update({str(user):float((f" {time:.2f}"))})   
         with open("high_scores.json", "w") as f2:
             json.dump(data1,f2)
-    print(data1)
     return save
     
 
