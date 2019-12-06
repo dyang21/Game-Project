@@ -3,6 +3,7 @@
 
 from os.path import join
 import os
+import json
 
 import pygame as pg
 from random import choice
@@ -52,6 +53,21 @@ def loadImgs(bgFolder_Path,shipFolder_Path):
     return bg_database,ship_parts
 
 
+
+def loadScores(time = 0 , update = False):
+    with open("high_scores.json") as f1:
+        data1 = json.load(f1)
+    user = "Player " + str(len(data1) + 1)
+    save = data1.copy() # now the scores are saved into the win object
+    if update == True:
+        data1.update({str(user):float((f" {time:.2f}"))})   
+        with open("high_scores.json", "w") as f2:
+            json.dump(data1,f2)
+    print(data1)
+    return save
+    
+
+
 class window():
     def __init__(self):
         self.WINDOW_SIZE = (696,466) # 300 200. ratio 3 by 2 is most common
@@ -78,7 +94,8 @@ class window():
         self.time = 0 #seconds
         self.turns = 0 #for hor cubes
         self.pause = False
-        self.scores = {}
+        self.scores = loadScores()
+
         
     def singleText(self,fontsize,message,x,y,bold = True, color = (0,0,0),underline = False):
         text = pg.font.Font(join("health","zero_hour.ttf"),fontsize)

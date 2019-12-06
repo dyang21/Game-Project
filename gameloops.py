@@ -23,10 +23,6 @@ import UI as ui
 
 
 
-def playerNumber(data1):
-    user = "Player " + str(len(data1) + 1)
-    return user
-
 
         
 
@@ -41,20 +37,7 @@ def pauseMenu():
     
 def victoryScreen():
     win.state = "VictoryScreen"
-    with open("high_scores.json") as f1:
-        data1 = json.load(f1)
-    
-    data1.update({str(playerNumber(data1)):float((f" {win.time:.2f}"))})   
-    
-
-    save = data1.copy() # now the scores are saved into the win object
-    
-    
-    
-    win.scores = save #list
-    
-    with open("high_scores.json", "w") as f2:
-        json.dump(data1,f2)
+    win.scores = gamescreens.loadScores(win.time, True)
     
     while win.state == "VictoryScreen":
         
@@ -195,6 +178,7 @@ def menuLoop():
 
 def highScorePage():
     win.state = "high score"
+    win.scores = gamescreens.loadScores()
     highScore = sorted((win.scores).values())[:5]
     result = {}
     for i in highScore:
@@ -438,6 +422,14 @@ def gameLoop():
                         user.pause = True
                         #user.vertical_momentum = 0
                         win.pause = True
+                        
+                        
+                #check
+                #if event.key == pg.K_9:
+                    #victoryScreen()
+                
+                
+                
                 
 
             if event.type == pg.KEYUP:
