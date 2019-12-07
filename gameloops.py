@@ -425,8 +425,8 @@ def gameLoop():
                         
                         
                 #check
-                #if event.key == pg.K_9:
-                    #victoryScreen()
+                if event.key == pg.K_9:
+                    victoryScreen()
                 
                 
                 
