@@ -6,3 +6,5 @@ A project I worked on by myself to experience working on an independent large sc
 readme in progress.
 
 run main to play
+
+![](ezgif.com-crop.gif)
