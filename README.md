@@ -11,8 +11,8 @@ This project was developed independently utilizing Python3 and Pygame.
 
 
 ## To Play
-1. Installed [Python](https://www.python.org/downloads/) 
-2. Installed PyGame
+1. Install [Python](https://www.python.org/downloads/) 
+2. Install PyGame
 `python3 -m pip install -U pygame --user`
 3. Run main.py 
 
