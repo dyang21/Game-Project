@@ -1,7 +1,7 @@
 # Lost In Space (Platformer) 
 A  side-scrolling game with the time of completion as the scoring metric where the player-controlled character must jump and move between different types of suspended tiles to reach the end of the stages. 
 
-Lost In Space is my first foray into game-making; I had started this project in October 2019 to gain experience working on a large scale project on my own within a limited time frame. As of December 2019, this game is complete.
+Lost In Space is my first foray into game-making using Python; I had started this project in October 2019 to gain experience working on a large scale project on my own within a limited time frame. As of December 2019, this game is complete.
 
 This project was developed independently utilizing Python3 and Pygame.
 
