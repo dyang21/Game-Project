@@ -63,7 +63,6 @@ def loadScores(time = 0 , update = False):
         data1.update({str(user):float((f" {time:.2f}"))})   
         with open("high_scores.json", "w") as f2:
             json.dump(data1,f2)
-    print(data1)
     return save
     
 
@@ -211,24 +210,25 @@ class window():
 
         if self.vertCubeData.get((x,y)) == None or self.vertCubeData[(x,y)] < 1:
             self.makeCube(x,y - (self.vertCubesDatabase[y]["displacement"]),tile_rects,18,color,True,vert_rects)
+            
+        if self.pause == False:
+            col_list = rectTest(user.player_rect,vert_rects,True)
 
-        col_list = rectTest(user.player_rect,vert_rects,True)
+            for tile in col_list:
 
-        for tile in col_list:
+                defaultX = (tile.x/18)
+                defaultY = round((tile.y/18) + self.vertCubesDatabase[y]["displacement"])
 
-            defaultX = (tile.x/18)
-            defaultY = round((tile.y/18) + self.vertCubesDatabase[y]["displacement"])
+                if (defaultX,defaultY) not in self.vertCubeData:
+                    self.vertCubeData[(defaultX,defaultY)] = 0
 
-            if (defaultX,defaultY) not in self.vertCubeData:
-                self.vertCubeData[(defaultX,defaultY)] = 0
-
-
-            if self.vertCubeData[(defaultX,defaultY)] < 2: # 2 secs?
-                self.vertCubeData[(defaultX,defaultY)] += 3/600
+            
+                if self.vertCubeData[(defaultX,defaultY)] < 2: # 2 secs?
+                    self.vertCubeData[(defaultX,defaultY)] += 3/600
 
 
-
-        self.vertCubesDatabase[y]["displacement"] += self.vertCubesDatabase[y]["speed"]
+        if self.pause == False:
+            self.vertCubesDatabase[y]["displacement"] += self.vertCubesDatabase[y]["speed"]
 
         #save the dispalcement let the tile droppppp in database
 
@@ -243,14 +243,14 @@ class window():
         col_List = rectTest(user.player_rect,dis_rects,True)
 
 
-
-        for tile in col_List:
-            defaultX = (tile.x/18)
-            defaultY = (tile.y/18)
-            if (defaultX,defaultY) not in self.disCubeData:
-                self.disCubeData[(defaultX,defaultY)] = 0
-            if self.disCubeData[(defaultX,defaultY)] < 1: #1 secs
-                self.disCubeData[(defaultX,defaultY)] += 3/600
+        if self.pause == False:
+            for tile in col_List:
+                defaultX = (tile.x/18)
+                defaultY = (tile.y/18)
+                if (defaultX,defaultY) not in self.disCubeData:
+                    self.disCubeData[(defaultX,defaultY)] = 0
+                if self.disCubeData[(defaultX,defaultY)] < 1: #1 secs
+                    self.disCubeData[(defaultX,defaultY)] += 3/600
 
 
 
@@ -293,7 +293,8 @@ class window():
 
 
         #the more hor cubes in a single y axis, the faster it becomes
-        self.horiCubeDatabase[y]["displacement"] += self.horiCubeDatabase[y]["speed"]
+        if self.pause == False:
+            self.horiCubeDatabase[y]["displacement"] += self.horiCubeDatabase[y]["speed"]
 
 
     def portal(self,x,y):
