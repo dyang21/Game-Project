@@ -8,7 +8,7 @@ class buttons:
         self.width = width
         self.height = height
         self.color = color
-        self.font = pg.font.Font(join("health","zero_hour.ttf"),size)
+        self.font = pg.font.Font(join("assets","health","zero_hour.ttf"),size)
         self.font.set_bold(True)
         self.text = self.font.render(text,True,(0,0,0))
         

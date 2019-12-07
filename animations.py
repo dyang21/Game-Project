@@ -38,6 +38,6 @@ def loadAnimation(folder_path,image_duration): #assumes the images in the folder
 #Gives sequence of images for every action.
 animation_database = {}
 #get frames to secs
-animation_database['static'] = loadAnimation(join('characters_pics','static','character_robot_static'),[125]*7)    #160/60 or fps specified below to secs
-animation_database["walk"] = loadAnimation(join('characters_pics','in_motion','character_robot_walk'),[9]*7)
-animation_database["jump"] = loadAnimation(join('characters_pics','in_motion','character_robot_jump'),[30])
+animation_database['static'] = loadAnimation(join('assets','characters_pics','static','character_robot_static'),[125]*7)    #160/60 or fps specified below to secs
+animation_database["walk"] = loadAnimation(join('assets','characters_pics','in_motion','character_robot_walk'),[9]*7)
+animation_database["jump"] = loadAnimation(join('assets','characters_pics','in_motion','character_robot_jump'),[30])

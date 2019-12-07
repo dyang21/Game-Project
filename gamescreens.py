@@ -73,23 +73,23 @@ class window():
         self.screen = pg.display.set_mode(self.WINDOW_SIZE) # initiate the window
         self.display = pg.Surface((438,292)) # surface for rendering; scaled to window size at end
         self.clock = pg.time.Clock()
-        self.menuBG_img = pg.transform.scale(pg.image.load(join("Backgrounds/blue.png")),(self.WINDOW_SIZE)).convert()
-        self.gameBG_img = pg.transform.scale(pg.image.load(join("Backgrounds/darkPurple.png")),(self.WINDOW_SIZE)).convert()
+        self.menuBG_img = pg.transform.scale(pg.image.load(join("assets","Backgrounds","blue.png")),(self.WINDOW_SIZE)).convert()
+        self.gameBG_img = pg.transform.scale(pg.image.load(join("assets","Backgrounds","darkPurple.png")),(self.WINDOW_SIZE)).convert()
         self.bg_objects = [[1/4.5,[10,7.5]],[1/2,[129,55]],[1/2.7,[210,100]],[1/2.2,[400,50]],[1/4.5,[500,71]],[1/2,[650,55]],[1/2.7,[800,150]]] #order means which one overlap one another. ex index 2 overlaps 1
-        self.bg_imgs,self.ship_parts = loadImgs("Damage", "ship_parts")
+        self.bg_imgs,self.ship_parts = loadImgs("assets/bg_img", "assets/ship_parts")
         self.difference = [0,0] # x and y. based on how far camera moves.
         self.captions = pg.display.set_caption('Lost in Space')
         self.stage_num = 0
         self.state = "GameMap0"
         self.maps_database = loadMaps("GameMaps")
-        self.health_font = pg.font.Font(join("health","zero_hour.ttf"),17)
+        self.health_font = pg.font.Font(join("assets","health","zero_hour.ttf"),17)
         self.health_font.set_bold(True)
         self.health_font.set_underline(True)
         self.vertCubesDatabase = {} #same displacement for entire horizontal line in y
         self.vertCubeData = {} #one vert disappearing cube.
         self.horiCubeDatabase = {} #also same displacement in x
         self.disCubeData = {} #static disappearing cub
-        self.time_font = pg.font.Font(join("health","zero_hour.ttf"),15)
+        self.time_font = pg.font.Font(join("assets","health","zero_hour.ttf"),15)
         self.time = 0 #seconds
         self.turns = 0 #for hor cubes
         self.pause = False
@@ -97,7 +97,7 @@ class window():
 
         
     def singleText(self,fontsize,message,x,y,bold = True, color = (0,0,0),underline = False):
-        text = pg.font.Font(join("health","zero_hour.ttf"),fontsize)
+        text = pg.font.Font(join("assets","health","zero_hour.ttf"),fontsize)
         text.set_bold(bold)
         text.set_underline(underline)
         rendered_text = text.render(message,True, color)
@@ -105,7 +105,7 @@ class window():
         
     def paragraph(self,paragraph,size,x,y):
         rawMessage = paragraph.split("\n")
-        text = pg.font.Font(join("health","zero_hour.ttf"),size)
+        text = pg.font.Font(join("assets","health","zero_hour.ttf"),size)
         for line in rawMessage:
             rendered_text = text.render(line,True, (0,0,0))
             self.display.blit(rendered_text,(x,y))
