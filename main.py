@@ -1,4 +1,4 @@
-import pygame as pg
+
 import gameloops as gl
 
 def main():
